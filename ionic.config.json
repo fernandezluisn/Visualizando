@@ -1,0 +1,7 @@
+{
+  "name": "Visualizando",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
