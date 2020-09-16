@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ingresar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <h3>Bienvenido a visualizando. Ingrese su usuario para comenzar a utilizar la aplicación.</h3>
+  <ion-item>
+    <ion-label>
+      Correo electronico
+    </ion-label>
+    <ion-input type="text" [(ngModel)]="email"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>
+      Contraseña
+    </ion-label>
+    <ion-input type="password" [(ngModel)]="password"></ion-input>
+  </ion-item>
+
+  <ion-button color="danger" (click)="carg2('Usuario')">Entrar como Usuario</ion-button>
+
+
+
+  <ion-button color="success" (click)="carg2('Tester')">Entrar como Tester</ion-button>
+
+
+
+  <ion-button color="light" (click)="carg2('Admin')">Entrar como Administrador</ion-button>
+
+
+  <ion-button color="warning" (click)="carg2('Invitado')">Entrar como Invitado</ion-button>
+
+
+
+  <ion-button color="dark" (click)="carg2('Crear nuevo usuario')">Entrar con mi propio usuario</ion-button>
+  
+
+  <ion-item-divider>
+    <ion-button size="large" class="centrar" (click)="login()">Ingresar</ion-button>
+  </ion-item-divider>
+</ion-content>
