@@ -46,10 +46,10 @@ export class LoginPage implements OnInit {
       this.presentLoading('Ingresando a la página...');
       this.servicio.loginUser(this.email, this.password).then(res=>{
         
-        this.router.navigate(['home']);
+        this.router.navigate(['botones']);
         
       }).catch(error=>{
-        this.alertar(error.message);      
+        this.alertar("Los datos ingresados no son correctos");      
       });
     }else{
       this.alertar("La contraseña debe tener más de 5 carácteres.");

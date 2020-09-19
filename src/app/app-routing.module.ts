@@ -15,6 +15,18 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./paginas/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'botones',
+    loadChildren: () => import('./paginas/botones/botones.module').then( m => m.BotonesPageModule)
+  },
+  {
+    path: 'subir-foto',
+    loadChildren: () => import('./paginas/subir-foto/subir-foto.module').then( m => m.SubirFotoPageModule)
+  },
+  {
+    path: 'listado-fotos',
+    loadChildren: () => import('./paginas/listado-fotos/listado-fotos.module').then( m => m.ListadoFotosPageModule)
+  },
 ];
 
 @NgModule({
