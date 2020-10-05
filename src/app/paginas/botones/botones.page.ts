@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-botones',
@@ -7,17 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BotonesPage implements OnInit {
 
-  constructor() { }
+  constructor(private router:Router,) { }
 
   ngOnInit() {
   }
 
   lindo(){
-
+    this.router.navigate(['subir-foto']);
   }
 
   feo(){
-    
+    this.router.navigate(['feo']);
   }
 
 }

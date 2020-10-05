@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'listado-fotos',
     loadChildren: () => import('./paginas/listado-fotos/listado-fotos.module').then( m => m.ListadoFotosPageModule)
   },
+  {
+    path: 'feo',
+    loadChildren: () => import('./paginas/feo/feo.module').then( m => m.FeoPageModule)
+  },
 ];
 
 @NgModule({

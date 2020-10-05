@@ -1,12 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Suba fotos agradables de su edificio.</ion-title>
+    <ion-title>Suba fotos que le disgustan de su edificio.</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
   <ion-button block (click)="sacarFoto()">Toma una foto</ion-button>
-  <h2 *ngIf="image">¿Esta es la imagen que quiere subir?</h2>
+  <h2 *ngIf="image">Esta es la imagen que quiere subir?</h2>
   <img style="border: 0.2rem black solid; height: 25rem; margin-left: 3rem;" [src]="image" *ngIf="image" />
   <ion-button block (click)="subir()" *ngIf="image">Subir imagen</ion-button>
 

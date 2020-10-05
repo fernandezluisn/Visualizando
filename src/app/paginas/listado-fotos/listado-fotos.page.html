@@ -5,5 +5,36 @@
 </ion-header>
 
 <ion-content>
+  <ion-list *ngIf="listaElegida" >
+    <div class="container" *ngFor="let item of listaElegida">
+      <ion-img src={{item.ruta}} style="margin-top: 0.5rem;"></ion-img>
+      
+      <h4>Fecha: {{item.fecha}}</h4>
+      <h5>Votos: {{item.votos}}</h5>
+      <h5>Fotógrafo: {{item.usuario.nombre}} {{item.usuario.apellido}}</h5>
+      
+      
+      <ion-button color="light" class="div" (click)="votar(item)">Votar</ion-button>
+    </div>
 
+  </ion-list>  
+
+  <ion-button class="apagar" color="dark" (click)="salir()">
+    <ion-icon name="power-sharp"></ion-icon>
+  </ion-button>
+
+  <ion-fab vertical="top" horizontal="start" slot="fixed">
+    <ion-fab-button color="light">
+      Fotos
+    </ion-fab-button>
+    <ion-fab-list side="end">
+      <ion-fab-button (click)="elegirLista('L')" color="light">
+       Lindas
+      </ion-fab-button>
+      <ion-fab-button (click)="elegirLista('F')" color="light">
+        Feas
+      </ion-fab-button>
+      
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>

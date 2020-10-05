@@ -4,18 +4,18 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { element } from 'protractor';
 import { finalize } from 'rxjs/operators';
 import { AuthServiceService } from 'src/app/servicios/auth-service.service';
 import { BdaService } from 'src/app/servicios/bda.service';
 import { foto } from 'src/clases/foto';
 import { Usuario } from 'src/clases/usuario';
-
 @Component({
-  selector: 'app-subir-foto',
-  templateUrl: './subir-foto.page.html',
-  styleUrls: ['./subir-foto.page.scss'],
+  selector: 'app-feo',
+  templateUrl: './feo.page.html',
+  styleUrls: ['./feo.page.scss'],
 })
-export class SubirFotoPage implements OnInit {
+export class FeoPage implements OnInit {
 
   url1: string;
   loading;
@@ -23,7 +23,6 @@ export class SubirFotoPage implements OnInit {
   user;
   fecha;
   usuarioLog:Usuario;
-  data:any;
   constructor(private storage:AngularFireStorage,private camera: Camera, private alertController:AlertController,
     private loadingCtrl:LoadingController, private bda:BdaService, private service:AuthServiceService, private router:Router,
     private datePipe:DatePipe) {
@@ -80,9 +79,8 @@ export class SubirFotoPage implements OnInit {
     }
 
     await this.camera.getPicture(options).then((imageData) => {
-      this.image = `data:image/jpeg;base64,${imageData}`; 
-      
-      this.bda.createObjeto(imageData);   
+      this.image = `data:image/jpeg;base64,${imageData}`;   
+      this.bda.createObjeto(imageData);    
      }, (err) => {
       this.alertar(err);
      });
@@ -105,12 +103,11 @@ export class SubirFotoPage implements OnInit {
       const task=this.storage.upload(path, file);     
       task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=> this.url1=url))).subscribe(); 
       let f=new foto(this.url1, this.usuarioLog, this.fecha);
-      this.bda.createFotoLinda(f);
+      this.bda.createFotoFea(f);
       this.router.navigate(["listado-fotos"]);
     }catch(err){
       this.alertar(err);
       this.bda.createObjeto(err);
-      this.bda.createObjeto(this.image);
     }    
 
   }
@@ -119,8 +116,6 @@ export class SubirFotoPage implements OnInit {
     this.service.logOutUser();    
     this.router.navigate(['login']);
   }
-  
 
-  
 
 }
