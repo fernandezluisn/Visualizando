@@ -53,6 +53,7 @@ export class ListadoFotosPage implements OnInit {
       this.listaElegida=this.lindas;
     }
     this.listaElegida.sort((a,b) => Number(Date.parse(a.fecha.toString())) - Number(Date.parse(b.fecha.toString())));
+    this.listaElegida.reverse();
   }
 
   votar(foto:foto){

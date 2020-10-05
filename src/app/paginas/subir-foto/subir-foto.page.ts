@@ -62,7 +62,7 @@ export class SubirFotoPage implements OnInit {
     this.loading = await this.loadingCtrl.create({
         message,
         spinner: "crescent",
-        duration: 2500
+        duration: 4500
     });
     return this.loading.present();
 
@@ -70,7 +70,7 @@ export class SubirFotoPage implements OnInit {
   }
 
   async sacarFoto(){
-
+    this.presentLoading("Cargando imagen");
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -80,9 +80,8 @@ export class SubirFotoPage implements OnInit {
     }
 
     await this.camera.getPicture(options).then((imageData) => {
-      this.image = `data:image/jpeg;base64,${imageData}`; 
-      
-      this.bda.createObjeto(imageData);   
+      this.image = `data:image/jpeg;base64,${imageData}`;       
+         
      }, (err) => {
       this.alertar(err);
      });
@@ -103,10 +102,14 @@ export class SubirFotoPage implements OnInit {
       const path= com;
       const ref=this.storage.ref(path);    
       const task=this.storage.upload(path, file);     
-      task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=> this.url1=url))).subscribe(); 
-      let f=new foto(this.url1, this.usuarioLog, this.fecha);
-      this.bda.createFotoLinda(f);
-      this.router.navigate(["listado-fotos"]);
+      task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+        this.url1=url;
+        let f=new foto(this.url1, this.usuarioLog, this.fecha);
+        this.bda.createFotoLinda(f);
+        this.router.navigate(["listado-fotos"]);
+
+      } ))).subscribe(); 
+      
     }catch(err){
       this.alertar(err);
       this.bda.createObjeto(err);

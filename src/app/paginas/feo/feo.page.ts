@@ -61,7 +61,7 @@ export class FeoPage implements OnInit {
     this.loading = await this.loadingCtrl.create({
         message,
         spinner: "crescent",
-        duration: 2500
+        duration: 4500
     });
     return this.loading.present();
 
@@ -69,7 +69,7 @@ export class FeoPage implements OnInit {
   }
 
   async sacarFoto(){
-
+    this.presentLoading("Cargando imagen");
     const options: CameraOptions = {
       quality: 100,
       destinationType: this.camera.DestinationType.DATA_URL,
@@ -101,10 +101,13 @@ export class FeoPage implements OnInit {
       const path= com;
       const ref=this.storage.ref(path);    
       const task=this.storage.upload(path, file);     
-      task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=> this.url1=url))).subscribe(); 
-      let f=new foto(this.url1, this.usuarioLog, this.fecha);
+      task.snapshotChanges().pipe(finalize(()=>ref.getDownloadURL().subscribe(url=>{
+        this.url1=url;
+        let f=new foto(this.url1, this.usuarioLog, this.fecha);
       this.bda.createFotoFea(f);
       this.router.navigate(["listado-fotos"]);
+      } ))).subscribe(); 
+      
     }catch(err){
       this.alertar(err);
       this.bda.createObjeto(err);
